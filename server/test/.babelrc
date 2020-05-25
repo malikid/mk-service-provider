@@ -1,0 +1,19 @@
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    ["@babel/plugin-transform-runtime", {
+      "regenerator": true
+    }],
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "Api": "./src/api",
+        "Controllers": "./src/api/controllers",
+        "Services": "./src/api/services",
+        "Config": "./src/config",
+        "Utils": "./src/utils",
+        "TestUtils": "./test/utils"
+      }
+    }]
+  ]
+}

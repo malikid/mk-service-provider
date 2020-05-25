@@ -1,0 +1,11 @@
+export const CARD = {
+  BLANK_SIDE: 0,
+  NUMBER_SIDE: 1
+};
+
+export const MEMORY_GAME_STATUS = {
+  IS_ASKING_NUMBER_OF_CARDS: 0,
+  IS_READY_TO_PLAY: 1,
+  IS_PLAYING: 2,
+  IS_DONE: 3
+};
