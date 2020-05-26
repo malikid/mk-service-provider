@@ -2,7 +2,8 @@ import {observable, action, computed} from 'mobx';
 import axios from 'axios';
 import * as moment from 'moment';
 import {forEach, reduce} from 'lodash';
-import os from 'os';
+
+import {SERVER_HOST} from 'Config';
 
 class ServiceProvider {
   @observable name;
@@ -82,7 +83,7 @@ class ServiceProvider {
 
   fetchBuiltInSkills = async () => {
     try {
-      const response = await axios.get(`http://${os.hostname()}:3030/skills`);
+      const response = await axios.get(`${SERVER_HOST}/skills`);
       this.setBuiltInSkills(response.data.result);
     } catch (error) {
       console.error(error);
@@ -106,7 +107,7 @@ class ServiceProvider {
     }
     this.isFetchingRequests = true;
     try {
-      const response = await axios.post(`http://${os.hostname()}:3030/requests`, {
+      const response = await axios.post(`${SERVER_HOST}/requests`, {
         skills: this.skills.slice()
       });
       this.setRequests(response.data);
