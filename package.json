@@ -4,8 +4,12 @@
   "description": "",
   "scripts": {
     "start": "SERVER_PORT=3030 npm-run-all --parallel start-client start-server",
-    "start-client": "cd client && yarn start",
-    "start-server": "cd server && npm run server"
+    "start": "SERVER_PORT=3030 npm-run-all --parallel start-client start-server-dev",
+    "start-client": "cd client && npm start",
+    "start-server": "cd server && npm start",
+    "start-server-dev": "cd server && npm run server",
+    "heroku-prebuild": "cd server && npm install && cd ../client/ && npm install",
+    "heroku-postbuild": "cd server && npm run build && cd ../client/ && npm run build"
   },
   "author": "malikid.chang@gmail.com",
   "license": "ISC",
