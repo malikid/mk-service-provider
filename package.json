@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "pushd server && npm start",
+    "start": "cd server && npm start",
     "start-dev": "SERVER_PORT=3030 npm-run-all --parallel start-client start-server",
     "start-client": "cd client && npm start",
     "start-server": "cd server && npm run server",
     "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development ./install-dependencies.sh",
     "heroku-postbuild": "npm-run-all build-server build-client && export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;",
-    "build-server": "pushd server && npm run build && popd",
-    "build-client": "pushd client && npm run build && popd"
+    "build-server": "cd server && npm run build && cd ..",
+    "build-client": "cd client && npm run build && cd .."
   },
   "author": "malikid.chang@gmail.com",
   "license": "ISC",
