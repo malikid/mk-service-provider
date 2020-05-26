@@ -55,7 +55,7 @@
 
 ### Launch both the client and the server with one script in development mode
 
-`npm start`
+`npm run start-dev`
 
 ### Run as one web service in production mode
 
