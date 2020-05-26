@@ -3,8 +3,6 @@
 ## Requirements
 
 - Node version: 12.13.0
-- Yarn version: 1.0.0
-> Will change one of the above to be consistent
 - A Firebase service set up
 
 
@@ -13,9 +11,17 @@
 
 1. Install the dependencies
 
-- `npm install` at the root of the project
-- `npm install` at the root of the server folder
-- `yarn` at the root of the client folder
+    - Install all the dependencies at once
+
+        ```
+        ./install-dependecies.sh
+        ```
+
+    - Install dependencies by projects
+
+        - `npm install` at the root of the project
+        - `npm install` at the root of the server folder
+        - `npm install` at the root of the client folder
 
 2. Put your Firebase key file at the root of server folder
 
