@@ -41,19 +41,33 @@
 
 ## How to run it
 
-### Client Part
+### Run separately in development mode
+
+##### Client Part
 
 1. `cd client`
 2. `yarn start`
 
-### Server Part
+##### Server Part
 
 1. `cd server`
 2. `npm run server`
 
-### Or to launch both the client and the server with one script
+### Launch both the client and the server with one script in development mode
 
 `npm start`
+
+### Run as one web service in production mode
+
+```
+npm run heroku-prebuild  // or use ./install-dependencies.sh
+// heroku-prebuild takes care of npm installs,
+// so it's not necessary if you've already installed all the packages
+
+npm run heroku-postbuild
+NODE_ENV=production npm start
+
+```
 
 
 

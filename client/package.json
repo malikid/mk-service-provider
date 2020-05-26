@@ -19,9 +19,7 @@
     "react-is": "16.13.1",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1",
-    "styled-components": "^5.1.0",
-    "customize-cra": "^0.9.1",
-    "react-app-rewired": "^2.1.6"
+    "styled-components": "^5.1.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -47,5 +45,9 @@
   "engines": {
     "node": "=12.13.0",
     "npm": ">=6.0.0"
+  },
+  "devDependencies": {
+    "customize-cra": "^0.9.1",
+    "react-app-rewired": "^2.1.6"
   }
 }
