@@ -70,8 +70,7 @@
 - Build
 
     ```
-    npm run build
-    npm run heroku-postbuild // Optional. Mainly for Heroku.
+    npm run heroku-postbuild  // Necessary since it does the build
     ```
 
 - Launch
