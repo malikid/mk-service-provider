@@ -32,3 +32,10 @@ npm run test:file test/config/database.spec.js
 Make sure there are data in the Firebase console.
 
 4. `npm run server`
+
+## How to run the tests in the server folder
+
+Make sure the test suite for uploading seed date to be skipped Then run the below at the root of the server folder.
+```
+npm run test
+```
