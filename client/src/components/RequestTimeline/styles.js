@@ -33,7 +33,7 @@ export const TimelineContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
 `;
 
