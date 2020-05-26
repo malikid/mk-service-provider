@@ -17,7 +17,7 @@ export class Database {
 
   init = () => {
     const firebaseCredential = isProduction()
-      ? JSON.parse(new Buffer.from(firebaseServiceAccountBase64, 'base64'))
+      ? JSON.parse(new Buffer.from(FIREBASE_SERVICE_ACCOUNT_BASE64, 'base64'))
       : require('../../service-provider-firebase-key.json');
 
     const serviceProviderProject = admin.initializeApp({
