@@ -46,12 +46,12 @@
 ##### Client Part
 
 1. `cd client`
-2. `yarn start`
+2. `SERVER_HOST="http://localhost:3030" yarn start`
 
 ##### Server Part
 
 1. `cd server`
-2. `npm run server`
+2. `SERVER_PORT=3030 npm run server`
 
 ### Launch both the client and the server with one script in development mode
 
