@@ -59,15 +59,27 @@
 
 ### Run as one web service in production mode
 
-```
-npm run heroku-prebuild  // or use ./install-dependencies.sh
-// heroku-prebuild takes care of npm installs,
-// so it's not necessary if you've already installed all the packages
+- (Optional) Install dependencies
 
-npm run heroku-postbuild
-NODE_ENV=production npm start
+    `heroku-prebuild` or `./install-dependencies.sh` takes care of npm installs, so it's not necessary if you've already installed all the packages.
 
-```
+    ```
+    npm run heroku-prebuild  // or use ./install-dependencies.sh
+    ```
+
+- Build
+
+    ```
+    npm run heroku-postbuild
+    ```
+
+- Launch
+
+    `FIREBASE_SERVICE_ACCOUNT_BASE64` can be generated with `node server/scripts/encryptFirebaseKeyToBase64.js`. And you can get `FIREBASE_DATABASE_URL` in the snippet in the `Service Account` tab at the `Settings` page on Firebase console. It should look like `https://your-project-id.firebaseio.com`.
+
+    ```
+    NODE_ENV=production FIREBASE_SERVICE_ACCOUNT_BASE64=$YOUR_FIREBASE_SERVICE_ACCOUNT_BASE64 FIREBASE_DATABASE_URL=$YOUR_FIREBASE_DATABASE_URL npm start
+    ```
 
 
 
