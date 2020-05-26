@@ -4,8 +4,6 @@ import reduce from 'lodash/reduce';
 import {isProduction} from 'Utils/general';
 import {FIREBASE_SERVICE_ACCOUNT_BASE64, FIREBASE_DATABASE_URL} from 'Config';
 
-import firebaseServiceAccount from '../../service-provider-firebase-key.json';
-
 export const init = () => {
   global.DbService = new Database();
 };
@@ -20,7 +18,7 @@ export class Database {
   init = () => {
     const firebaseCredential = isProduction()
       ? JSON.parse(new Buffer.from(firebaseServiceAccountBase64, 'base64'))
-      : firebaseServiceAccount;
+      : require('../../service-provider-firebase-key.json');
 
     const serviceProviderProject = admin.initializeApp({
       credential: admin.credential.cert(firebaseCredential),
