@@ -1,7 +1,10 @@
 import * as admin from 'firebase-admin';
 import reduce from 'lodash/reduce';
 
-import serviceAccount from "../../service-provider-f24f0-firebase-adminsdk-mxs73-c8f2b83da9.json";
+import {isProduction} from 'Utils/general';
+import {FIREBASE_SERVICE_ACCOUNT_BASE64, FIREBASE_DATABASE_URL} from 'Config';
+
+import firebaseServiceAccount from '../../service-provider-firebase-key.json';
 
 export const init = () => {
   global.DbService = new Database();
@@ -15,75 +18,75 @@ export class Database {
   }
 
   init = () => {
+    const firebaseCredential = isProduction()
+      ? JSON.parse(new Buffer.from(firebaseServiceAccountBase64, 'base64'))
+      : firebaseServiceAccount;
+
     const serviceProviderProject = admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: "https://service-provider-f24f0.firebaseio.com"
+      credential: admin.credential.cert(firebaseCredential),
+      databaseURL: FIREBASE_DATABASE_URL,
     });
 
     // serviceProviderProject.auth();
     this.client = serviceProviderProject.database();
-  }
+  };
 
   create = (data) => this.client.ref().set(data);
 
   read = () =>
-    this.client.ref()
+    this.client
+      .ref()
       .once('value')
       .then((snapshot) => snapshot.val());
 
-  update = (data) =>
-    this.client.ref().update(data);
+  update = (data) => this.client.ref().update(data);
 
-  remove = () =>
-    this.client.ref().remove();
-
-
+  remove = () => this.client.ref().remove();
 
   // CRUD by entity
-  createByEntity = (entity, data) =>
-    this.client.ref(entity).set(data);
+  createByEntity = (entity, data) => this.client.ref(entity).set(data);
 
   readByEntity = (entity) =>
-    this.client.ref(entity)
+    this.client
+      .ref(entity)
       .once('value')
       .then((snapshot) => snapshot.val());
 
-  updateByEntity = (entity, data) =>
-    this.client.ref(entity).update(data);
+  updateByEntity = (entity, data) => this.client.ref(entity).update(data);
 
-  removeByEntity = (entity) =>
-    this.client.ref(entity).remove();
-
-
+  removeByEntity = (entity) => this.client.ref(entity).remove();
 
   // CRUD by id
   createWithoutId = (entity, data) =>
     // Id is auto-generated
     this.client.ref(`${entity}`).push(data);
 
-  createById = (entity, id, data) =>
-    this.client.ref(`${entity}/${id}`).set(data);
+  createById = (entity, id, data) => this.client.ref(`${entity}/${id}`).set(data);
 
   readById = (entity, id) =>
-    this.client.ref(`${entity}/${id}`)
+    this.client
+      .ref(`${entity}/${id}`)
       .once('value')
       .then((snapshot) => snapshot.val());
 
   readByIdEndAt = (entity, id, endAtField, endAtValue) =>
-    this.client.ref(`${entity}/${id}`)
+    this.client
+      .ref(`${entity}/${id}`)
       .orderByChild(endAtField)
       .endAt(endAtValue)
       .once('value')
       .then((snapshot) => {
-        return reduce(snapshot.val(), (results, item, key) => {
-          item && results.push({id: key, ...item});
-          return results;
-        }, []);
+        return reduce(
+          snapshot.val(),
+          (results, item, key) => {
+            item && results.push({id: key, ...item});
+            return results;
+          },
+          []
+        );
       });
 
-  updateById = (entity, id, data) =>
-    this.client.ref(`${entity}/${id}`).update(data);
+  updateById = (entity, id, data) => this.client.ref(`${entity}/${id}`).update(data);
 
-  removeById = (entity, id) =>
-    this.client.ref(`${entity}/${id}`).remove();
-};
+  removeById = (entity, id) => this.client.ref(`${entity}/${id}`).remove();
+}
