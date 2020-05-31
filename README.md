@@ -46,12 +46,12 @@
 ##### Client Part
 
 1. `cd client`
-2. `SERVER_HOST="http://localhost:3030" yarn start`
+2. `SERVER_HOST="http://localhost:3030" npm start`
 
 ##### Server Part
 
 1. `cd server`
-2. `SERVER_PORT=3030 npm run server`
+2. `npm run server`
 
 ### Launch both the client and the server with one script in development mode
 
@@ -85,7 +85,16 @@
 
 ## How to run the tests in the server folder
 
-Make sure the test suite for uploading seed date to be skipped Then run the below at the root of the server folder.
-```
-npm run test
-```
+Make sure the test suite for uploading seed date to be skipped. Then, run the below at the root of the server folder.
+
+- Run all the tests
+
+    ```
+    npm test
+    ```
+
+- Run tests in a specific file
+
+    ```
+    npm run test:file [FILE_PATH]
+    ```
